@@ -3,7 +3,7 @@
 set (PROJECT wxWidgetsTests)
 project(${PROJECT})
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -14,9 +14,10 @@ option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
 # Cmake modules
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 # CMake properies
-include(CMakeConfig)
+include(Config)
 # Conan and dependencies
-# include(ConanModule)
+#include(ConanModule)
+# CMake findpackages
+include(FindPackages)
 
-add_subdirectory(3rdParty/wxWidgets)
 add_subdirectory(wxCalc)
