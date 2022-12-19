@@ -5,8 +5,7 @@
 MainWindow::MainWindow(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxRESIZE_BORDER)
 {
-
-    SetIcon(wxIcon(wxT("wxCalc/resources/img/calc_128.ico"), wxBITMAP_TYPE_ICO));
+    SetIcon(wxIcon(wxT("resources/img/calc_32.ico"), wxBITMAP_TYPE_ICO));
 
     wxPanel* mainPanel = new wxPanel(this, wxID_ANY);
 

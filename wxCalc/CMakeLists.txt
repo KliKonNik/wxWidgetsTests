@@ -28,14 +28,4 @@ add_executable(${TARGET} WIN32 ${SOURCE_FILES} ${SOURCE_UI_WIDGETS} ${SOURCE_PUB
 
 set_target_properties(${TARGET} PROPERTIES FOLDER ${FOLDER})
 
-target_link_libraries(${TARGET} ${wxWidgets_LIBRARIES})
-
-install(TARGETS ${TARGET}
-        CONFIGURATIONS Debug
-        RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin/wxCalc/Debug
-)
-
-install(TARGETS ${TARGET}
-        CONFIGURATIONS Release
-        RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin/wxCalc/Release
-)
+target_link_libraries(${TARGET} wx::core wx::base)
