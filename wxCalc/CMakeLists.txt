@@ -26,9 +26,10 @@ set (SOURCE_PUBLIC_VARIABLES
 
 add_executable(${TARGET} WIN32 ${SOURCE_FILES} ${SOURCE_UI_WIDGETS} ${SOURCE_PUBLIC_VARIABLES})
 
-set_target_properties(${TARGET} PROPERTIES FOLDER ${FOLDER})
-
 target_link_libraries(${TARGET} ${wxWidgets_LIBRARIES})
+
+target_include_directories(${TARGET} PRIVATE ${wxWidgets_INCLUDE_DIRS})
+#message(FATAL_ERROR "wxWidgets_INCLUDE_DIRS: ${wxWidgets_INCLUDE_DIRS}.")
 
 install(TARGETS ${TARGET}
         CONFIGURATIONS Debug
