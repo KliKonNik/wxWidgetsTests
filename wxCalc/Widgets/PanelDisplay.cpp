@@ -1,5 +1,3 @@
-#pragma once
-
 #include "PanelDisplay.hpp"
 #include "PublicVars/Colors.hpp"
 #include "PublicVars/InternalProjectVariables.hpp"
@@ -7,7 +5,7 @@
 PanelDisplay::PanelDisplay(wxWindow* parent)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SUNKEN)
 {
-    SetBackgroundColour(wxColour(Colors::WHITE));
+    SetBackgroundColour(Colors::WHITE);
     
     wxBoxSizer* bsVDisplay = new wxBoxSizer(wxVERTICAL);
 
@@ -29,8 +27,8 @@ PanelDisplay::PanelDisplay(wxWindow* parent)
 
     _workingDisplayLine->SetFont(fontWorkingLine);
 
-    bsVDisplay->Add(_historyDisplayLine, 0, wxEXPAND | wxRIGHT | wxLEFT | wxTOP, wxBorder(10));
-    bsVDisplay->Add(_workingDisplayLine, 0, wxEXPAND | wxRIGHT | wxLEFT | wxBOTTOM, wxBorder(10));
+    bsVDisplay->Add(_historyDisplayLine, 1, wxEXPAND | wxRIGHT | wxLEFT | wxTOP, wxBorder(10));
+    bsVDisplay->Add(_workingDisplayLine, 1, wxEXPAND | wxRIGHT | wxLEFT | wxBOTTOM, wxBorder(10));
     
     this->SetSizer(bsVDisplay);
 }

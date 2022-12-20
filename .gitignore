@@ -1,9 +1,6 @@
 # Visual Studio cache/options directory
 .vs/
 
-# This path was ignored because README.md
-include/
-
 # User-specific files
 CMakePresets.json
 
