@@ -8,6 +8,7 @@ namespace InternalProjectVariables
     extern int fontDisplaySmallSize;
     extern int fontDisplayLargeSize;
     extern wxFont fontButtons;
+    extern wxBorder innerBorder;
 
     enum Buttons {
         ZERO = 0,

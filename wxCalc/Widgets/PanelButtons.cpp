@@ -1,11 +1,12 @@
-﻿#pragma once
-
-#include "PanelButtons.hpp"
+﻿#include "PanelButtons.hpp"
 #include "PublicVars/InternalProjectVariables.hpp"
+#include "PublicVars/Colors.hpp"
 
 PanelButtons::PanelButtons(wxWindow* parent)
-    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SUNKEN)
+    : wxPanel(parent, wxID_ANY)
 {
+    SetBackgroundColour(parent->GetBackgroundColour());
+
     using InternalProjectVariables::Buttons;
     _buttons[Buttons::ZERO]       = new wxButton(this, InternalProjectVariables::ID_BTN_ZERO,       wxT("0"));
     _buttons[Buttons::ONE]        = new wxButton(this, InternalProjectVariables::ID_BTN_ONE,        wxT("1"));
@@ -28,15 +29,29 @@ PanelButtons::PanelButtons(wxWindow* parent)
     _buttons[Buttons::BACKSPACE]  = new wxButton(this, InternalProjectVariables::ID_BTN_BACKSPACE,  wxT("←"));
     _buttons[Buttons::CLEAR]      = new wxButton(this, InternalProjectVariables::ID_BTN_CLEAR,      wxT("C"));
 
-    for (int i = Buttons::ZERO; i <= Buttons::CLEAR; ++i)
+    for (int i = Buttons::ZERO /*0*/; i <= Buttons::CLEAR /*19*/; ++i)
     {
         _buttons[i]->SetFont(InternalProjectVariables::fontButtons);
+
+        if (i >= Buttons::ZERO && i <= Buttons::NINE)
+        {
+            _buttons[i]->SetOwnBackgroundColour(Colors::LIGHT_GRAY);
+        }
+
+        if (i >= Buttons::PLUS && i <= Buttons::CALCULATE)
+        {
+            _buttons[i]->SetOwnBackgroundColour(Colors::LIGHT_ORANGE);
+        }
+
+        if (i >= Buttons::PERCENT && i <= Buttons::CLEAR)
+        {
+            _buttons[i]->SetOwnBackgroundColour(Colors::GRAY);
+        }
     }
 
     wxBoxSizer* bsButtons = new wxBoxSizer(wxVERTICAL);
 
-    /**/
-    wxGridSizer* gsButtons = new wxGridSizer(5, 4, -1, -1);
+    wxGridSizer* gsButtons = new wxGridSizer(5, 4, 0, 0);
 
     gsButtons->Add(_buttons[Buttons::CLEAR],        1, wxEXPAND);
     gsButtons->Add(_buttons[Buttons::BACKSPACE],    1, wxEXPAND);
@@ -62,11 +77,8 @@ PanelButtons::PanelButtons(wxWindow* parent)
     gsButtons->Add(_buttons[Buttons::ZERO],         1, wxEXPAND);
     gsButtons->Add(_buttons[Buttons::POINT],        1, wxEXPAND);
     gsButtons->Add(_buttons[Buttons::CALCULATE],    1, wxEXPAND);
-    /**/
 
-    /**/
     bsButtons->Add(gsButtons, 1, wxEXPAND);
-    /**/
 
     this->SetSizer(bsButtons);
 }
