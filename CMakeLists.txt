@@ -18,7 +18,7 @@ include(Config)
 # Conan and dependencies
 #include(ConanModule)
 # CMake findpackages
-#include(FindPackages)
+include(FindPackages)
 
 # CCache
 if (ENABLE_CCACHE)
@@ -27,5 +27,4 @@ endif()
 
 set(wxBUILD_SHARED OFF)
 
-add_subdirectory(3rdParty/wxWidgets)
 add_subdirectory(wxCalc)
