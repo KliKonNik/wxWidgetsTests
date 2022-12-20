@@ -16,7 +16,7 @@ MainWindow::MainWindow(const wxString& title)
     else
     {
 
-    }
+    SetIcon(wxIcon(wxT("wxCalc/resources/img/calc_32.ico"), wxBITMAP_TYPE_ICO));
 
     wxPanel* mainPanel = new wxPanel(this, wxID_ANY);
     
