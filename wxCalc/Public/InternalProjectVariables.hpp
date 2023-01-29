@@ -9,6 +9,7 @@ namespace InternalProjectVariables
     extern int fontDisplayLargeSize;
     extern wxFont fontButtons;
     extern wxBorder innerBorder;
+    extern int displayDigitsMaxLength;
 
     enum Buttons {
         ZERO = 0,
@@ -23,8 +24,8 @@ namespace InternalProjectVariables
         NINE,
         PLUS,
         MINUS,
-        DIVIDE,
         MULTIPLY,
+        DIVIDE,
         CALCULATE,
         PERCENT,
         POINT,
@@ -46,8 +47,8 @@ namespace InternalProjectVariables
     constexpr int ID_BTN_NINE         = 100 + Buttons::NINE;
     constexpr int ID_BTN_PLUS         = 100 + Buttons::PLUS;
     constexpr int ID_BTN_MINUS        = 100 + Buttons::MINUS;
-    constexpr int ID_BTN_DIVIDE       = 100 + Buttons::DIVIDE;
     constexpr int ID_BTN_MULTIPLY     = 100 + Buttons::MULTIPLY;
+    constexpr int ID_BTN_DIVIDE       = 100 + Buttons::DIVIDE;
     constexpr int ID_BTN_CALCULATE    = 100 + Buttons::CALCULATE;
     constexpr int ID_BTN_PERCENT      = 100 + Buttons::PERCENT;
     constexpr int ID_BTN_POINT        = 100 + Buttons::POINT;
@@ -55,4 +56,4 @@ namespace InternalProjectVariables
     constexpr int ID_BTN_BACKSPACE    = 100 + Buttons::BACKSPACE;
     constexpr int ID_BTN_CLEAR        = 100 + Buttons::CLEAR;
    
-} //namespace Consts
+} //namespace InternalProjectVariables
