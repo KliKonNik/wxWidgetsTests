@@ -1,6 +1,6 @@
 #include "PanelDisplay.hpp"
-#include "PublicVars/Colors.hpp"
-#include "PublicVars/InternalProjectVariables.hpp"
+#include "Public/Colors.hpp"
+#include "Public/InternalProjectVariables.hpp"
 
 PanelDisplay::PanelDisplay(wxWindow* parent)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SUNKEN)
@@ -9,8 +9,8 @@ PanelDisplay::PanelDisplay(wxWindow* parent)
     
     wxBoxSizer* bsVDisplay = new wxBoxSizer(wxVERTICAL);
 
-    _historyDisplayLine = new wxStaticText(this, wxID_ANY, "_history line_0");
-    _historyDisplayLine->SetWindowStyleFlag(wxALIGN_RIGHT);
+    _historyDisplayLine = new wxStaticText(this, wxID_ANY, "");
+    _historyDisplayLine->SetWindowStyleFlag(wxALIGN_RIGHT | wxST_NO_AUTORESIZE);
     
     wxFont fontHistoryLine;
     fontHistoryLine.SetFaceName(InternalProjectVariables::fontFaceName);
@@ -18,8 +18,8 @@ PanelDisplay::PanelDisplay(wxWindow* parent)
     
     _historyDisplayLine->SetFont(fontHistoryLine);
 
-    _workingDisplayLine = new wxStaticText(this, wxID_ANY, "_working line_0");
-    _workingDisplayLine->SetWindowStyleFlag(wxALIGN_RIGHT);
+    _workingDisplayLine = new wxStaticText(this, wxID_ANY, "0");
+    _workingDisplayLine->SetWindowStyleFlag(wxALIGN_RIGHT | wxST_NO_AUTORESIZE);
 
     wxFont fontWorkingLine{fontHistoryLine};
     fontWorkingLine.SetWeight(wxFONTWEIGHT_BOLD);
@@ -31,4 +31,24 @@ PanelDisplay::PanelDisplay(wxWindow* parent)
     bsVDisplay->Add(_workingDisplayLine, 1, wxEXPAND | wxRIGHT | wxLEFT | wxBOTTOM, wxBorder(10));
     
     this->SetSizer(bsVDisplay);
+}
+
+const wxString PanelDisplay::GetHistory() const
+{
+    return _historyDisplayLine->GetLabelText();
+}
+
+void PanelDisplay::ToHistoryDisplay(const wxString& msg)
+{
+    _historyDisplayLine->SetLabel(msg);
+}
+
+const wxString PanelDisplay::GetWorkingDisplay() const
+{
+    return _workingDisplayLine->GetLabelText();
+}
+
+void PanelDisplay::ToWorkingDisplay(const wxString& msg)
+{
+    _workingDisplayLine->SetLabel(msg);
 }

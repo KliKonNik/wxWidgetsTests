@@ -18,10 +18,16 @@ set (SOURCE_UI_WIDGETS
 )
 
 set (SOURCE_PUBLIC_VARIABLES
-        PublicVars/InternalProjectVariables.hpp
-        PublicVars/InternalProjectVariables.cpp
-        PublicVars/Colors.hpp
-        PublicVars/Colors.cpp
+        Public/InternalProjectVariables.hpp
+        Public/InternalProjectVariables.cpp
+        Public/Colors.hpp
+        Public/Colors.cpp
+        Public/Operand.hpp
+        Public/Operand.cpp
+        Public/Operator.hpp
+        Public/Operator.cpp
+        Public/Utils.hpp
+        Public/Utils.cpp
 )
 
 add_executable(${TARGET} WIN32 ${SOURCE_FILES} ${SOURCE_UI_WIDGETS} ${SOURCE_PUBLIC_VARIABLES})

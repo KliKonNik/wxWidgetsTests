@@ -1,6 +1,6 @@
 ﻿#include "PanelButtons.hpp"
-#include "PublicVars/InternalProjectVariables.hpp"
-#include "PublicVars/Colors.hpp"
+#include "Public/InternalProjectVariables.hpp"
+#include "Public/Colors.hpp"
 
 PanelButtons::PanelButtons(wxWindow* parent)
     : wxPanel(parent, wxID_ANY)
@@ -20,8 +20,8 @@ PanelButtons::PanelButtons(wxWindow* parent)
     _buttons[Buttons::NINE]       = new wxButton(this, InternalProjectVariables::ID_BTN_NINE,       wxT("9"));
     _buttons[Buttons::PLUS]       = new wxButton(this, InternalProjectVariables::ID_BTN_PLUS,       wxT("+"));
     _buttons[Buttons::MINUS]      = new wxButton(this, InternalProjectVariables::ID_BTN_MINUS,      wxT("-"));
-    _buttons[Buttons::DIVIDE]     = new wxButton(this, InternalProjectVariables::ID_BTN_DIVIDE,     wxT("/"));
     _buttons[Buttons::MULTIPLY]   = new wxButton(this, InternalProjectVariables::ID_BTN_MULTIPLY,   wxT("*"));
+    _buttons[Buttons::DIVIDE]     = new wxButton(this, InternalProjectVariables::ID_BTN_DIVIDE,     wxT("/"));
     _buttons[Buttons::CALCULATE]  = new wxButton(this, InternalProjectVariables::ID_BTN_CALCULATE,  wxT("="));
     _buttons[Buttons::PERCENT]    = new wxButton(this, InternalProjectVariables::ID_BTN_PERCENT,    wxT("%"));
     _buttons[Buttons::POINT]      = new wxButton(this, InternalProjectVariables::ID_BTN_POINT,      wxT("."));
@@ -81,4 +81,9 @@ PanelButtons::PanelButtons(wxWindow* parent)
     bsButtons->Add(gsButtons, 1, wxEXPAND);
 
     this->SetSizer(bsButtons);
+}
+
+wxButton** PanelButtons::GetButtons()
+{
+    return _buttons;
 }
