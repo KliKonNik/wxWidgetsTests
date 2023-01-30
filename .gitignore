@@ -1,6 +1,10 @@
 # Visual Studio cache/options directory
 .vs/
 
+# To keep CMake part without changes
+CMakeLists.txt
+wxCalc/CMakeLists.txt
+
 # User-specific files
 CMakePresets.json
 
