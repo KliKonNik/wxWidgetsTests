@@ -31,5 +31,6 @@ private:
     void OnButtonBackspaceClicked(wxCommandEvent& event);
     void OnButtonClearClicked(wxCommandEvent& event);
 
+    void OnKeyEvent(wxKeyEvent& event);
 DECLARE_EVENT_TABLE()
 };

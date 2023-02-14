@@ -9,26 +9,27 @@
 using namespace InternalProjectVariables;
 
 wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
-    EVT_BUTTON(ID_BTN_ZERO,         MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_ONE,          MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_TWO,          MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_THREE,        MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_FOUR,         MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_FIVE,         MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_SIX,          MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_SEVEN,        MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_EIGHT,        MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_NINE,         MainWindow::OnButtonNumberClicked)
-    EVT_BUTTON(ID_BTN_PLUS,         MainWindow::OnButtonOperatorClicked)
-    EVT_BUTTON(ID_BTN_MINUS,        MainWindow::OnButtonOperatorClicked)
-    EVT_BUTTON(ID_BTN_MULTIPLY,     MainWindow::OnButtonOperatorClicked)
-    EVT_BUTTON(ID_BTN_DIVIDE,       MainWindow::OnButtonOperatorClicked)
-    EVT_BUTTON(ID_BTN_CALCULATE,    MainWindow::OnButtonCalculateClicked)
-    EVT_BUTTON(ID_BTN_PERCENT,      MainWindow::OnButtonPercentClicked)
-    //EVT_BUTTON(ID_BTN_POINT,        MainWindow::OnButtonPointClicked) // why is it commented? See line 68
-    EVT_BUTTON(ID_BTN_PLUS_MINUS,   MainWindow::OnButtonPlusMinusClicked)
-    //EVT_BUTTON(ID_BTN_BACKSPACE,    MainWindow::OnButtonBackspaceClicked) // why is it commented? See line 68
-    EVT_BUTTON(ID_BTN_CLEAR,        MainWindow::OnButtonClearClicked)
+    EVT_BUTTON      (ID_BTN_ZERO,         MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_ONE,          MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_TWO,          MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_THREE,        MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_FOUR,         MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_FIVE,         MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_SIX,          MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_SEVEN,        MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_EIGHT,        MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_NINE,         MainWindow::OnButtonNumberClicked)
+    EVT_BUTTON      (ID_BTN_PLUS,         MainWindow::OnButtonOperatorClicked)
+    EVT_BUTTON      (ID_BTN_MINUS,        MainWindow::OnButtonOperatorClicked)
+    EVT_BUTTON      (ID_BTN_MULTIPLY,     MainWindow::OnButtonOperatorClicked)
+    EVT_BUTTON      (ID_BTN_DIVIDE,       MainWindow::OnButtonOperatorClicked)
+    EVT_BUTTON      (ID_BTN_CALCULATE,    MainWindow::OnButtonCalculateClicked)
+    EVT_BUTTON      (ID_BTN_PERCENT,      MainWindow::OnButtonPercentClicked)
+    EVT_BUTTON      (ID_BTN_POINT,        MainWindow::OnButtonPointClicked)
+    EVT_BUTTON      (ID_BTN_PLUS_MINUS,   MainWindow::OnButtonPlusMinusClicked)
+    EVT_BUTTON      (ID_BTN_BACKSPACE,    MainWindow::OnButtonBackspaceClicked)
+    EVT_BUTTON      (ID_BTN_CLEAR,        MainWindow::OnButtonClearClicked)
+    EVT_CHAR_HOOK   (                     MainWindow::OnKeyEvent)
 wxEND_EVENT_TABLE()
 
 MainWindow::MainWindow(const wxString& title)
@@ -67,7 +68,7 @@ MainWindow::MainWindow(const wxString& title)
 
     //these cases are presented for educational purposes only
     Connect(ID_BTN_BACKSPACE, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MainWindow::OnButtonBackspaceClicked));
-    _panelButtons->GetButtons()[Buttons::POINT]->Bind(wxEVT_BUTTON, &MainWindow::OnButtonPointClicked, this);
+    _panelButtons->GetButtons()[Buttons::POINT]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MainWindow::OnButtonPointClicked, this);
 }
 
 void MainWindow::ResetError()
@@ -238,4 +239,19 @@ void MainWindow::OnButtonClearClicked(wxCommandEvent& event)
     _panelDisplay->ToHistoryDisplay("");
     _panelDisplay->ToWorkingDisplay('0');
     _displayReaded = false;
+}
+
+void MainWindow::OnKeyEvent(wxKeyEvent& event)
+{
+    wxCommandEvent commandEvent(wxEVT_NULL, Utils::WhichKeyPressed(event.GetKeyCode()));
+    
+    if (commandEvent.GetId() != NULL)
+    {
+        commandEvent.SetEventType(wxEVT_COMMAND_BUTTON_CLICKED);
+        wxEvtHandler::ProcessEvent(commandEvent);
+    }
+    else
+    {
+        wxBell();
+    }
 }
