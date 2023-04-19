@@ -13,4 +13,5 @@ namespace Utils
     int WhatNumberPressed(int id_btn_value);
     char WhatOperatorPressed(int id_btn_value);
     Operand Calculate(const Operand& first, const Operator& oper, const Operand& second);
+    int WhichKeyPressed(int eventKeyCode);
 } // namespace Utils
