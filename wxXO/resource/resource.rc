@@ -1,0 +1,3 @@
+#include "recource.h"
+
+icon_main ICON "../recource/ico/wxXO.ico"

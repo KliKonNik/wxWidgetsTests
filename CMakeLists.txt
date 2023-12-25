@@ -29,3 +29,4 @@ set(wxBUILD_SHARED OFF)
 
 add_subdirectory(3rdParty/wxWidgets)
 add_subdirectory(wxCalc)
+add_subdirectory(wxXO)
